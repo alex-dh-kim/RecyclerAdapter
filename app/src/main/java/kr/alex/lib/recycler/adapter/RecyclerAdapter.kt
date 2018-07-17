@@ -15,6 +15,8 @@ class RecyclerAdapter<D : RecyclerCellType>(private val delegate: Delegate<D>) :
         holder.onBindViewHolder(dataList[position], position)
     }
 
+    override fun getItemViewType(position: Int): Int = delegate.getCellStyle(position, dataList[position])
+
     fun onReceivedRecyclerEvent(event: RecyclerAdapterChangeEvent<D>) {
         when (event) {
             is RecyclerAdapterChangeEvent.Reloaded -> {
